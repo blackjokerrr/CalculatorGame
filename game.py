@@ -15,7 +15,15 @@ class Windows:
     def run(self):
         self.setFrame()
         self.frame.mainloop()
+        
+class User:
     
+    name = ''
+    score = 0
+    
+    def setScore(self, score):
+        
+        self.score = score
     
     
     
@@ -50,7 +58,7 @@ class Question:
                 label.config(text = str(self.counting_time))
                 time.sleep(1)
                 
-            self.setQuestion('C')
+            self.setQuestion(self.randomQuestion())
             self.counting_time = 0
             counting()
         
@@ -82,6 +90,10 @@ class Answer:
     box_answer = Windows()
     object_question = Question()
     txt = Text(box_answer.frame, width=20, height=2)
+    user = User()
+    user.name = 'A'
+    label_user = Label(box_answer.frame, text = 'User: ' + user.name + ' Score: ' + str(user.score))
+    label_user.pack()
     
 
         
@@ -93,6 +105,8 @@ class Answer:
         
         if (int(check_answer[0]) + int(check_answer[2])) == int(answer.strip('\n')):
             self.object_question.setQuestion(self.object_question.randomQuestion())
+            self.user.score += 1
+            self.label_user.config(text = 'User: ' + self.user.name + ' Score: ' + str(self.user.score))
 
     
     def show(self):
@@ -104,11 +118,12 @@ class Answer:
         
         
         
-    
+
 game = Windows()
 
 game_question = Question()
 game_answer = Answer()
+
 
 game_question.show()
 game_answer.show()
