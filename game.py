@@ -143,7 +143,7 @@ class Answer:
         
         if len(check_answer[0]) > 2:
             mode = 'Hard'
-        elif len(check_answer[0]) > 1:
+        elif len(check_answer[0]) > 1 and int(check_answer[0]) > 10:
             mode = 'Normal'
         else:
             mode = 'Easy'
