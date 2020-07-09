@@ -137,17 +137,10 @@ class Answer:
     def checkAnswer(self, event):
         answer = self.txt.get(1.0, END)
         question = self.object_question.label.cget('text')
-        mode = ''
+        mode = self.object_question.label_mode.cget('text')
         
         check_answer = question.split(' ')
         
-        if len(check_answer[0]) > 2:
-            mode = 'Hard'
-        elif len(check_answer[0]) > 1 and int(check_answer[0]) > 10:
-            mode = 'Normal'
-        else:
-            mode = 'Easy'
-
         
         if (answer.strip('\n')).isdigit() and (int(check_answer[0]) + int(check_answer[2])) == int(answer.strip('\n')):
             self.object_question.setQuestion(self.object_question.randomQuestion(mode))
